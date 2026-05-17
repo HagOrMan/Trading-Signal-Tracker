@@ -9,6 +9,7 @@ No buy/sell language anywhere (DEC-001). If you find yourself adding a new
 observation type, take the time to write the framing thoughtfully — that
 friction is the point.
 """
+
 from __future__ import annotations
 
 OBSERVATION_TEMPLATES: dict[str, dict[str, str]] = {
@@ -139,9 +140,9 @@ OBSERVATION_TEMPLATES: dict[str, dict[str, str]] = {
             "periods tend to precede regime breaks, and 'low vol begets high vol.' "
             "Another view is the opposite: compressed vol simply reflects a stable "
             "fundamental environment and there's no information in it about future "
-            "direction. The 2017–early 2018 stretch on US equities, ending in the "
+            "direction. The 2017-early 2018 stretch on US equities, ending in the "
             "February 2018 'volmageddon,' is the canonical example of the first "
-            "camp being right; long stretches of the 2013–2016 period are examples "
+            "camp being right; long stretches of the 2013-2016 period are examples "
             "of the second. The signal alone doesn't tell you which you're in."
         ),
         "what_to_consider": (

@@ -7,13 +7,13 @@ The `find_historical_*` helpers used by the honesty layer return the full set
 of dates this observation would have fired throughout the history, not just
 "currently active." Those live alongside the detector for proximity.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from typing import Callable
 
-import numpy as np
 import pandas as pd
 
 from src import indicators
@@ -90,9 +90,7 @@ def _index_to_date(idx) -> date:
 # ---------------------------------------------------------------------------
 
 
-def _crossover_above_dates(
-    short: pd.Series, long: pd.Series
-) -> list[pd.Timestamp]:
+def _crossover_above_dates(short: pd.Series, long: pd.Series) -> list[pd.Timestamp]:
     """Dates where `short` crossed strictly from <= long to > long."""
     aligned = pd.concat([short, long], axis=1, join="inner").dropna()
     if aligned.empty:
@@ -102,9 +100,7 @@ def _crossover_above_dates(
     return list(aligned.index[crossings.fillna(False)])
 
 
-def _crossover_below_dates(
-    short: pd.Series, long: pd.Series
-) -> list[pd.Timestamp]:
+def _crossover_below_dates(short: pd.Series, long: pd.Series) -> list[pd.Timestamp]:
     aligned = pd.concat([short, long], axis=1, join="inner").dropna()
     if aligned.empty:
         return []
