@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Anti-Signal Tool — local SQLite state (never commit)
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
