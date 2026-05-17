@@ -124,13 +124,17 @@
 
 ---
 
+### DEC-014: TSX coverage verification deferred — handle at the data layer (PEND-003)
+**Date:** 2026-05-17
+**Decision:** Treat the yfinance reach question as a runtime concern, not a build-time decision. `data_fetch.fetch_price_history()` returns an empty DataFrame on failure (network, missing data, SSL trust issues) and views render a clear "no data available" message. The honesty layer surfaces sample tiers (`very_low`/`low`/`moderate`/`good`) so thin TSX history is visible to the user rather than silently degraded.
+**Rationale:** Initial sanity-check runs from this machine hit a curl_cffi/SSL trust error before any yfinance response could be evaluated — that's an environment issue, not a data-quality one. The architecture already degrades gracefully; we don't need to bake a separate "low TSX coverage" code path.
+**Implications:** Resolves PEND-003. If a TSX ticker has, e.g., only 2 years of history, the honesty layer will tag every horizon as `very_low` sample tier — exactly the DEC-011 mechanism. If yfinance returns nothing at all, the view shows "No price data available for SYMBOL".
+
+---
+
 ## Pending Decisions
 
-### PEND-003: TSX historical data depth verification
-**Status:** Unresolved — must verify in Phase 1
-**Question:** Does yfinance return enough history on TSX tickers (RY.TO, SHOP.TO, ENB.TO) to make the honesty layer useful? US tickers typically have decades; TSX may have less.
-**Action needed:** Run `yfinance.Ticker("RY.TO").history(period="max")` in Phase 1 and document available date ranges. If insufficient, decide whether to lower historical-instance expectations or note the limitation in the UI.
-**Decision needed from:** Claude Code during Phase 1.10 review
+*(none — all forks resolved as of 2026-05-17)*
 
 ---
 
