@@ -105,7 +105,7 @@ def _render_honesty_panel(
                 ),
             }
         )
-    st.dataframe(pd.DataFrame(table_rows), hide_index=True, use_container_width=True)
+    st.dataframe(pd.DataFrame(table_rows), hide_index=True, width="stretch")
 
     # 6-month histogram (or first available horizon)
     fwd = result.get("forward_returns") or {}
@@ -124,7 +124,7 @@ def _render_honesty_panel(
             showlegend=False,
         )
         fig.add_vline(x=0, line_dash="dash", line_color="gray")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     else:
         st.caption(
             "Histogram unavailable — instances are too recent to have full forward returns."
@@ -257,7 +257,7 @@ def render(config: Config) -> None:
         )
     with cols[2]:
         st.markdown("&nbsp;", unsafe_allow_html=True)
-        go_clicked = st.button("Review", type="primary", use_container_width=True)
+        go_clicked = st.button("Review", type="primary", width="stretch")
 
     if go_clicked:
         st.session_state.review_ticker = ticker_input.strip().upper()

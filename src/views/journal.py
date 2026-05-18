@@ -141,4 +141,4 @@ def render(config: Config) -> None:
     with tab_all:
         st.markdown(f"### {len(all_entries)} total entries")
         df = _entries_to_df(all_entries)
-        st.dataframe(df, hide_index=True, use_container_width=True)
+        st.dataframe(df, hide_index=True, width="stretch")

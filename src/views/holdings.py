@@ -37,7 +37,7 @@ def _render_add_form(table: str) -> None:
             shares = None
         with cols[3]:
             st.markdown("&nbsp;", unsafe_allow_html=True)
-            submitted = st.form_submit_button("Add", use_container_width=True)
+            submitted = st.form_submit_button("Add", width="stretch")
     if submitted:
         ticker = (ticker or "").strip().upper()
         if not ticker:
@@ -68,7 +68,7 @@ def _render_holdings_table() -> None:
             for h in holdings
         ]
     )
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=True, width="stretch")
 
     with st.expander("Remove a holding"):
         labels = [f"{h.ticker} ({h.exchange})" for h in holdings]
@@ -95,7 +95,7 @@ def _render_watchlist_table() -> None:
             for w in watch
         ]
     )
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=True, width="stretch")
 
     with st.expander("Remove from watchlist"):
         labels = [f"{w.ticker} ({w.exchange})" for w in watch]
